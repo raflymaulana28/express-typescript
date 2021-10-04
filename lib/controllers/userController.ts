@@ -12,24 +12,25 @@ import e = require("express");
 export class UserController {
   private user_service: UserService = new UserService();
   public create_user(req: Request, res: Response) {
+    const { name, last_name, email, phone_number, gender }=req.body
     if (
-      req.body.name &&
-      req.body.name.first_name &&
-      req.body.name.middle_name &&
-      req.body.name.last_name &&
-      req.body.email &&
-      req.body.phone_number &&
-      req.body.gender
+     name &&
+     name.first_name &&
+     name.middle_name &&
+     name.last_name &&
+     email &&
+     phone_number &&
+     gender
     ) {
       const user_params: IUser = {
         name: {
-          first_name: req.body.name.first_name,
-          middle_name: req.body.name.middle_name,
-          last_name: req.body.name.last_name,
+          first_name: name.first_name,
+          middle_name: name.middle_name,
+          last_name: name.last_name,
         },
-        email: req.body.email,
-        phone_number: req.body.phone_number,
-        gender: req.body.gender,
+        email: email,
+        phone_number: phone_number,
+        gender: gender,
         modification_notes: [
           {
             modified_on: new Date(Date.now()),
